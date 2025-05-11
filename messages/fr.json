@@ -1,4 +1,7 @@
 {
+  "Header": {
+    "title": "Bienvenue"
+  },
   "Home": {
     "deployNow": "Déployer maintenant",
     "footer": {
@@ -7,7 +10,7 @@
       "learn": "Apprendre"
     },
     "getStarted": "Commencez par éditer",
-    "readDocs": "Lisez notre documentation",
+    "readDocs": "Lire nos docs",
     "saveChanges": "Enregistrez et visualisez vos modifications instantanément"
   },
   "LanguageSwitcher": {
@@ -23,25 +26,5 @@
     "light": "Clair",
     "srOnly": "Changer de thème",
     "system": "Système"
-  },
-  "Footer": {
-    "connect": {
-      "description": "Retrouvez-moi en ligne.",
-      "title": "Réseaux sociaux"
-    },
-    "copyright": "© {year} {title}. Tous droits réservés.",
-    "legal": {
-      "notices": "Mentions légales",
-      "privacy": "Politique de confidentialité"
-    },
-    "links": {
-      "github": {
-        "label": "GitHub",
-        "srOnly": "Profil GitHub"
-      }
-    }
-  },
-  "Header": {
-    "title": "Bienvenue"
   }
 }

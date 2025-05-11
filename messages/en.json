@@ -1,4 +1,7 @@
 {
+  "Header": {
+    "title": "Welcome"
+  },
   "Home": {
     "deployNow": "Deploy now",
     "footer": {
@@ -7,7 +10,7 @@
       "learn": "Learn"
     },
     "getStarted": "Get started by editing",
-    "readDocs": "Read our documentation",
+    "readDocs": "Read our docs",
     "saveChanges": "Save and see your changes instantly"
   },
   "LanguageSwitcher": {
@@ -23,25 +26,5 @@
     "light": "Light",
     "srOnly": "Change theme",
     "system": "System"
-  },
-  "Footer": {
-    "connect": {
-      "description": "Find me online.",
-      "title": "Connect"
-    },
-    "copyright": "© {year} {title}. All rights reserved.",
-    "legal": {
-      "notices": "Legal notices",
-      "privacy": "Privacy policy"
-    },
-    "links": {
-      "github": {
-        "label": "GitHub",
-        "srOnly": "GitHub profile"
-      }
-    }
-  },
-  "Header": {
-    "title": "Welcome"
   }
 }
