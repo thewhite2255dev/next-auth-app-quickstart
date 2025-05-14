@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTranslations } from "next-intl";
 import { navItemsType } from "./header";

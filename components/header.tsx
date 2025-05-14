@@ -2,7 +2,7 @@
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { MobileNav } from "@/components/mobile-nav";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import { useTranslations } from "next-intl";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";

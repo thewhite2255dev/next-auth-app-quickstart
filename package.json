@@ -1,5 +1,5 @@
 {
-  "name": "next-app-quickstart",
+  "name": "next-auth-app-quickstart",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,21 +12,28 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.9.1",
     "@bprogress/next": "^3.2.12",
+    "@hookform/resolvers": "^5.0.1",
     "@prisma/client": "^6.6.0",
+    "@radix-ui/react-alert-dialog": "^1.1.13",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-dropdown-menu": "^2.1.12",
+    "@radix-ui/react-label": "^2.1.6",
     "@radix-ui/react-separator": "^1.1.6",
     "@radix-ui/react-slot": "^1.2.0",
     "@react-email/components": "0.0.36",
     "@react-email/render": "^1.0.6",
     "@react-email/tailwind": "^1.0.4",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.6.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
+    "input-otp": "^1.4.2",
     "lucide-react": "^0.503.0",
     "next": "15.3.1",
+    "next-auth": "5.0.0-beta.28",
     "next-cloudinary": "^6.16.0",
     "next-intl": "^4.0.3",
     "next-themes": "^0.4.6",
@@ -34,9 +41,11 @@
     "nuqs": "^2.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.3",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -48,6 +57,7 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.6.0",

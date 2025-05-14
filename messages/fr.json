@@ -1,4 +1,257 @@
 {
+  "Form": {
+    "account": {
+      "errors": {
+        "role": {
+          "invalid": "Rôle invalide"
+        },
+        "username": {
+          "invalidPattern": "Caractères spéciaux non autorisés (seuls lettres, chiffres, - et _ sont acceptés)",
+          "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
+          "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
+        }
+      }
+    },
+    "auth": {
+      "backToLogin": "Retour à la connexion",
+      "continueWith": "Continuer avec",
+      "orSignInWith": "Ou continuer avec"
+    },
+    "authentication": {
+      "errors": {
+        "twoFactor": {
+          "invalid": "Paramètre 2FA invalide"
+        }
+      }
+    },
+    "contact": {
+      "errors": {
+        "email": {
+          "invalid": "Veuillez entrer une adresse e-mail valide"
+        },
+        "message": {
+          "minLength": "Le message doit contenir au moins {min} caractères"
+        },
+        "name": {
+          "minLength": "Le nom doit contenir au moins {min} caractères"
+        },
+        "subject": {
+          "minLength": "Le sujet doit contenir au moins {min} caractères"
+        }
+      }
+    },
+    "deleteAccount": {
+      "errors": {
+        "confirmation": {
+          "invalid": "Vous devez écrire 'supprimer mon compte' pour confirmer",
+          "required": "Confirmation requise"
+        },
+        "deleteConfirmation": {
+          "span1": "Veuillez écrire",
+          "span2": "'supprimer mon compte'",
+          "span3": "pour confirmer"
+        },
+        "email": {
+          "invalid": "Adresse e-mail invalide"
+        },
+        "password": {
+          "required": "Mot de passe requis"
+        }
+      }
+    },
+    "editAccount": "Ce n'est pas la bonne adresse ? <button>modifier</button>",
+    "errors": {
+      "OAuthAccountNotLinked": "Cet e-mail est déjà utilisé par une autre méthode de connexion",
+      "codeExpired": "Le code a expiré",
+      "email": {
+        "notFound": "Aucun compte trouvé avec cet e-mail",
+        "twoFactorNotEnabled": "L'authentification a deux facteur est désactive"
+      },
+      "emailFound": "L'adresse e-mail est déja utilisé",
+      "fields": {
+        "invalid": "Les champs saisis sont invalides"
+      },
+      "generic": "Une erreur est survenu, veuillez réessayer",
+      "invalidCode": "Code de vérification invalide",
+      "invalidCredentials": "Adresse e-mail ou mot de passe incorrect",
+      "notAuthorized": "Accès non autorisé",
+      "token": {
+        "expired": "Le token a expiré",
+        "invalid": "Le token est invalide",
+        "missing": "Le token est maquant"
+      },
+      "usernameFound": "Le nom d'utilisateur est déjà utilisé"
+    },
+    "forgotPassword": {
+      "button": "Envoyer le lien de réinitialisation",
+      "description": {
+        "checkEmail": "Vérifier votre boîte de réception pour obtenir un lien permettant de réinitialiser votre mot de passe",
+        "enterEmail": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe"
+      },
+      "errors": {
+        "email": {
+          "invalid": "Adresse e-mail invalide"
+        }
+      },
+      "fields": {
+        "email": "Adresse e-mail"
+      },
+      "states": {
+        "error": "Une erreur est survenu lors de la réinitialisation du mot de passe",
+        "resetEmailSent": "E-mail de réinitialisation envoyé avec succès"
+      },
+      "success": {
+        "description": "Nous avons envoyé un lien de réinitialisation de mot de passe à votre adresse <strong></strong>",
+        "title": "Vérifiez votre e-mail"
+      },
+      "title": "Mot de passe oublié"
+    },
+    "login": {
+      "button": "Se connecter",
+      "createAccount": "Vous n'avez pas de compte ? <link>Inscrivez-vous</link>",
+      "description": "Connectez-vous à votre compte",
+      "errors": {
+        "email": {
+          "invalid": "Adresse e-mail invalide"
+        },
+        "password": {
+          "required": "Le mot de passe est requis"
+        }
+      },
+      "fields": {
+        "email": "Adresse e-mail",
+        "password": "Mot de passe"
+      },
+      "forgotPassword": "Mot de passe oublié ?",
+      "states": {
+        "error": "Une erreur est survenu lors de la connexion",
+        "success": "Un e-mail de confirmation a été envoyé"
+      },
+      "title": "Connexion"
+    },
+    "onboarding": {
+      "errors": {
+        "name": {
+          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
+          "minLength": "Le nom doit contenir au moins {min} caractère"
+        },
+        "password": {
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
+        }
+      }
+    },
+    "password": {
+      "errors": {
+        "current": {
+          "required": "Mot de passe actuel requis"
+        },
+        "mutual": {
+          "bothRequired": "Les deux champs de mot de passe doivent être remplis"
+        },
+        "new": {
+          "minLength": "Le nouveau mot de passe doit contenir au moins {min} caractères",
+          "required": "Nouveau mot de passe requis"
+        }
+      }
+    },
+    "profile": {
+      "errors": {
+        "bio": {
+          "maxLength": "La bio ne peut pas dépasser {max} caractères"
+        },
+        "location": {
+          "maxLength": "La localisation ne peut pas dépasser {max} caractères"
+        },
+        "name": {
+          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
+          "minLength": "Le nom doit contenir au moins {min} caractères"
+        }
+      },
+      "states": {
+        "completed": "Merci d'avoir completé votre profil",
+        "error": "Une erreur est survenu lors de la configuration de votre profil"
+      }
+    },
+    "resendCode": {
+      "states": {
+        "error": "Une erreur est survenu lors de l'envoie du 2FA Code",
+        "success": "2FA Code envoyé avec succès"
+      }
+    },
+    "resetPassword": {
+      "button": "Réinitialiser le mot de passe",
+      "description": {
+        "checkEmail": "Votre mot de passe a été réinitialisé avec succès",
+        "enterEmail": "Entrez votre nouveau mot de passe ci-dessous"
+      },
+      "errors": {
+        "password": {
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
+        }
+      },
+      "states": {
+        "success": "Mot de passe réinitialisé avec succès"
+      },
+      "success": {
+        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+        "goToLogin": "Aller à la connexion",
+        "title": "Mot de passe réinitialisé"
+      },
+      "title": "Réinitialiser le mot de passe"
+    },
+    "signup": {
+      "button": "Créer un compte",
+      "description": "Créer un nouveau compte",
+      "errors": {
+        "email": {
+          "invalid": "Adresse e-mail invalide"
+        },
+        "name": {
+          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
+          "minLength": "Le nom doit contenir au moins {min} caractères"
+        },
+        "password": {
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
+        },
+        "username": {
+          "invalidPattern": "Doit contenir uniquement des lettres, chiffres, - ou _",
+          "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
+          "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
+        }
+      },
+      "fields": {
+        "email": "Adresse e-mail",
+        "name": "Nom",
+        "password": "Mot de passe",
+        "username": "Nom d'utilisateur"
+      },
+      "haveAccount": "Vous avez déjà un compte ? <link>Connectez-vous</link>",
+      "states": {
+        "error": "Une erreur est survenu lors de l'inscription",
+        "success": "Votre compte a été crée avec succès"
+      },
+      "title": "Inscription"
+    },
+    "twoFactor": {
+      "button": "Vérifier",
+      "description": "Entrez le code de votre application d'authentification pour continuer",
+      "loading": "Vérification en cours...",
+      "rememberDevice": "Se souvenir de cet appareil pendant 30 jours",
+      "title": "Vérification à deux facteurs",
+      "useRecoveryCode": "Utiliser un code de récupération à la place"
+    },
+    "verifyEmail": {
+      "backToLogin": "Retour à la connexion",
+      "button": "Vérifier l'e-mail",
+      "description": "Nous avons envoyé un code de vérification à votre adresse e-mail. Veuillez l'entrer ci-dessous.",
+      "resendCode": "Vous n'avez pas reçu de code ? <button>Renvoyer le code</button>",
+      "states": {
+        "error": "Une erreur est survenu lors de la vérification l'adresse e-mail",
+        "success": "L'adresse e-mail a été vérifié avec succès"
+      },
+      "title": "Vérifiez votre e-mail"
+    }
+  },
   "Header": {
     "title": "Bienvenue"
   },

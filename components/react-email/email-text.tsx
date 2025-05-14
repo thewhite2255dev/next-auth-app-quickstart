@@ -1,5 +1,5 @@
 import { Text } from "@react-email/components";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 interface EmailTextProps extends React.ComponentPropsWithoutRef<typeof Text> {
   content: string;
