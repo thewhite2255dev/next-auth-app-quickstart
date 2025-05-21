@@ -7,7 +7,6 @@ import { SiteConfig } from "@/lib/site-config";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
-import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
@@ -42,14 +41,12 @@ export default async function RootLayout({
 
   const messages = await getMessages();
 
-  const session = await auth();
-
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider session={session}>
+        <SessionProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Providers>{children}</Providers>
           </NextIntlClientProvider>

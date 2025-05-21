@@ -38,16 +38,6 @@ const authMiddleware = auth((req) => {
     );
   }
 
-  // 🚧 Redirect OAuth users who haven't completed onboarding
-  if (!isOnboardingRoute && user?.isOAuth && !user?.password) {
-    return NextResponse.redirect(new URL(DEFAULT_ONBOARDING_REDIRECT, nextUrl));
-  }
-
-  // ✅ User finished onboarding but tries to access onboarding page again
-  if (session && isOnboardingRoute && user?.password) {
-    return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-  }
-
   // 🔁 Prevent logged-in user from accessing login/signup
   if (session && isAuthPage) {
     return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));

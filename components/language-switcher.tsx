@@ -25,8 +25,8 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const t = useTranslations("LanguageSwitcher");
 
   const languages = [
-    { code: "en", name: t("en") },
     { code: "fr", name: t("fr") },
+    { code: "en", name: t("en") },
   ];
 
   const onLanguageChange = (newLocale: string) => {
@@ -36,8 +36,8 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className={className}>
-          <Globe className="h-[1.2rem] w-[1.2rem]" />
+        <Button variant="outline" size="icon" className={className}>
+          <Globe />
           <span className="sr-only">{t("srOnly")}</span>
         </Button>
       </DropdownMenuTrigger>

@@ -62,7 +62,7 @@ export function SocialButtons({
           key={provider}
           provider={provider}
           onClick={() => handleClick(provider)}
-          isLoading={!!socialLoading}
+          isLoading={provider === socialLoading}
           variant={variant}
           text={
             showFullNames
@@ -168,7 +168,9 @@ export function SocialDivider({
         <span className="w-full border-t" />
       </div>
       <div className="relative flex justify-center text-xs uppercase">
-        <span className="bg-background text-muted-foreground px-2">{text}</span>
+        <span className="text-muted-foreground dark:bg-card bg-white px-2">
+          {text}
+        </span>
       </div>
     </div>
   );

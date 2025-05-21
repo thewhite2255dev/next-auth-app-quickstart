@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -9,11 +9,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTranslations } from "next-intl";
 import { navItemsType } from "./header";
 import Image from "next/image";
+import UserButton from "./user-button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function MobileNav() {
   const t = useTranslations();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  const isMobile = useIsMobile();
 
   const navItems: navItemsType = [
     {
@@ -26,10 +30,16 @@ export function MobileNav() {
     },
   ];
 
+  // useEffect(() => {
+  //   if (!isMobile) {
+  //     setOpen(false);
+  //   }
+  // }, [isMobile]);
+
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={isMobile && open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="sm">
           <Menu className="h-5 w-5" />
           <span className="sr-only">Toggle menu</span>
         </Button>
@@ -39,8 +49,8 @@ export function MobileNav() {
         side="right"
         className="max-h-screen w-[250px] overflow-y-scroll px-4 sm:w-[300px]"
       >
-        <div className="flex flex-col gap-6 pt-16 pb-6">
-          <nav className="flex flex-col gap-4">
+        <div className="flex h-full flex-col gap-6 pt-16 pb-6">
+          <div className="flex flex-col gap-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -71,7 +81,10 @@ export function MobileNav() {
                 </>
               </Link>
             ))}
-          </nav>
+          </div>
+          <div className="mt-auto">
+            <UserButton className="h-auto" variant="ghost" size="default" />
+          </div>
         </div>
       </SheetContent>
     </Sheet>

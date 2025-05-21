@@ -27,7 +27,7 @@ export function AuthCard({
 }: AuthCardProps) {
   return (
     <div className="bg-muted/50 flex min-h-screen items-center justify-center p-4">
-      <Card className={`w-full max-w-md ${className}`}>
+      <Card className={`mt-12 w-full max-w-md sm:mt-0 ${className}`}>
         <div className="absolute top-4 right-4">
           <div className="space-x-2">
             <LanguageSwitcher />

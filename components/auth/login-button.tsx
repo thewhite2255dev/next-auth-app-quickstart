@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 interface LoginButtonProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
-export default function LoginButton({ children, className }: LoginButtonProps) {
+export function LoginButton({ children, className }: LoginButtonProps) {
   const router = useRouter();
 
   const handleClick = () => {

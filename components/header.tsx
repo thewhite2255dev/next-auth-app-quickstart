@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { SiteConfig } from "@/lib/site-config";
+import UserButton from "./user-button";
 
 export type navItemsType = {
   label: string;
@@ -22,11 +23,11 @@ export function Header() {
   return (
     <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
-        <div>
+        <Link href="/">
           <span className="text-foreground text-lg font-semibold">
             {SiteConfig.title}
           </span>
-        </div>
+        </Link>
         <nav className="hidden gap-6 font-medium lg:flex">
           {navItems.map((item) => (
             <Link
@@ -42,9 +43,16 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher />
-          <ThemeSwitcher />
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-2 sm:flex">
+            <LanguageSwitcher />
+            <ThemeSwitcher />
+          </div>
+
+          <div className="max-lg:hidden">
+            <UserButton />
+          </div>
+
           <div className="block lg:hidden">
             <MobileNav />
           </div>

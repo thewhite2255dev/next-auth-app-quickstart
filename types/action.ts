@@ -1,5 +1,3 @@
-import { boolean } from "zod";
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ActionResult {
   success?: boolean;
@@ -7,7 +5,3 @@ export interface ActionResult {
   message?: string;
   data?: any;
 }
-
-export type LoginResult = ActionResult & {
-  twoFactor: boolean;
-};

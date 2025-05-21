@@ -24,7 +24,6 @@ export const resendCode = async (email: string) => {
     await sendTwoFactorTokenEmail(existingUser.email, twoFactorToken.token);
 
     return { success: t("resendCode.states.success") };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     console.log(t("resendCode.states.error"));
     return { error: t("errors.generic") };

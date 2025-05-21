@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import { signOut } from "next-auth/react";
 
 interface LogoutButtonProps extends React.HTMLAttributes<HTMLElement> {
@@ -8,7 +8,7 @@ interface LogoutButtonProps extends React.HTMLAttributes<HTMLElement> {
   redirectTo?: string;
 }
 
-export default function LogoutButton({
+export function LogoutButton({
   children,
   className,
   redirectTo = "/",

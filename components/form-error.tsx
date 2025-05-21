@@ -15,12 +15,12 @@ export default function FormError({
   return (
     <div
       className={cn(
-        "flex min-h-9 items-center space-x-2 rounded-md bg-red-50 px-3 py-1 text-sm text-red-500",
+        "flex min-h-9 items-center space-x-2 rounded-md bg-red-50 px-3 py-1 text-sm text-red-500 [&_svg]:size-4 [&_svg]:shrink-0",
         className,
       )}
       {...props}
     >
-      <TriangleAlert className="h-4 w-4" />
+      <TriangleAlert />
       <span>{message}</span>
     </div>
   );

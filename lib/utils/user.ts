@@ -33,6 +33,7 @@ export function generateAvatarFallback(name: string) {
     .join("")
     .toUpperCase();
 }
+
 export async function generateUniqueUsername(
   base: string,
   maxLength: number = 15,

@@ -1,5 +1,8 @@
 {
   "Form": {
+    "VerifyEmail": {
+      "link": "lien"
+    },
     "account": {
       "errors": {
         "role": {
@@ -15,7 +18,9 @@
     "auth": {
       "backToLogin": "Retour à la connexion",
       "continueWith": "Continuer avec",
-      "orSignInWith": "Ou continuer avec"
+      "orSignInWith": "Ou continuer avec",
+      "resendCountdown": "Renvoyer le {name} dans {countdown} s",
+      "resendLabel": "Renvoyer le {name}"
     },
     "authentication": {
       "errors": {
@@ -52,7 +57,7 @@
           "span3": "pour confirmer"
         },
         "email": {
-          "invalid": "Adresse e-mail invalide"
+          "invalid": "Veuillez entrer une adresse e-mail valide"
         },
         "password": {
           "required": "Mot de passe requis"
@@ -61,18 +66,18 @@
     },
     "editAccount": "Ce n'est pas la bonne adresse ? <button>modifier</button>",
     "errors": {
-      "OAuthAccountNotLinked": "Cet e-mail est déjà utilisé par une autre méthode de connexion",
+      "OAuthAccountNotLinked": "Ce compte existe déjà avec une autre méthode de connexion. Connectez-vous avec la méthode utilisée lors de l’inscription",
       "codeExpired": "Le code a expiré",
       "email": {
-        "notFound": "Aucun compte trouvé avec cet e-mail",
+        "notFound": "Aucun compte n'est associé à cette adresse e-mail",
         "twoFactorNotEnabled": "L'authentification a deux facteur est désactive"
       },
-      "emailFound": "L'adresse e-mail est déja utilisé",
+      "emailFound": "L'adresse e-mail est déjà utilisé",
       "fields": {
         "invalid": "Les champs saisis sont invalides"
       },
       "generic": "Une erreur est survenu, veuillez réessayer",
-      "invalidCode": "Code de vérification invalide",
+      "invalidCode": "Le code est invalide",
       "invalidCredentials": "Adresse e-mail ou mot de passe incorrect",
       "notAuthorized": "Accès non autorisé",
       "token": {
@@ -90,19 +95,23 @@
       },
       "errors": {
         "email": {
-          "invalid": "Adresse e-mail invalide"
-        }
+          "invalid": "Veuillez entrer une adresse e-mail valide",
+          "required": "L'adresse e-mail est requise"
+        },
+        "resendLink": "Une erreur est survenue lors du renvoi du lien"
       },
       "fields": {
         "email": "Adresse e-mail"
       },
+      "link": "lien",
       "states": {
         "error": "Une erreur est survenu lors de la réinitialisation du mot de passe",
         "resetEmailSent": "E-mail de réinitialisation envoyé avec succès"
       },
       "success": {
-        "description": "Nous avons envoyé un lien de réinitialisation de mot de passe à votre adresse <strong></strong>",
-        "title": "Vérifiez votre e-mail"
+        "description": "Nous avons envoyé un lien de réinitialisation de mot de passe à <strong></strong>",
+        "resendLink": "Le lien a été renvoyé avec succès",
+        "title": "Vérifiez votre adresse e-mail"
       },
       "title": "Mot de passe oublié"
     },
@@ -112,7 +121,8 @@
       "description": "Connectez-vous à votre compte",
       "errors": {
         "email": {
-          "invalid": "Adresse e-mail invalide"
+          "invalid": "Veuillez entrer une adresse e-mail valide",
+          "required": "L'adresse e-mail est requise"
         },
         "password": {
           "required": "Le mot de passe est requis"
@@ -128,17 +138,6 @@
         "success": "Un e-mail de confirmation a été envoyé"
       },
       "title": "Connexion"
-    },
-    "onboarding": {
-      "errors": {
-        "name": {
-          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom doit contenir au moins {min} caractère"
-        },
-        "password": {
-          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
-        }
-      }
     },
     "password": {
       "errors": {
@@ -168,7 +167,7 @@
         }
       },
       "states": {
-        "completed": "Merci d'avoir completé votre profil",
+        "completed": "Merci d'avoir complété votre profil",
         "error": "Une erreur est survenu lors de la configuration de votre profil"
       }
     },
@@ -186,14 +185,15 @@
       },
       "errors": {
         "password": {
-          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères",
+          "required": "Le mot de passe est requis"
         }
       },
       "states": {
         "success": "Mot de passe réinitialisé avec succès"
       },
       "success": {
-        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe",
         "goToLogin": "Aller à la connexion",
         "title": "Mot de passe réinitialisé"
       },
@@ -201,17 +201,20 @@
     },
     "signup": {
       "button": "Créer un compte",
-      "description": "Créer un nouveau compte",
+      "description": "Créez votre compte dès maintenant",
       "errors": {
         "email": {
-          "invalid": "Adresse e-mail invalide"
+          "invalid": "Veuillez entrer une adresse e-mail valide",
+          "required": "L'adresse e-mail est requise"
         },
         "name": {
           "maxLength": "Le nom ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom doit contenir au moins {min} caractères"
+          "minLength": "Le nom doit contenir au moins {min} caractères",
+          "required": "Le nom est requis"
         },
         "password": {
-          "minLength": "Le mot de passe doit contenir au moins {min} caractères"
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères",
+          "required": "Le mot de passe est requis"
         },
         "username": {
           "invalidPattern": "Doit contenir uniquement des lettres, chiffres, - ou _",
@@ -233,23 +236,48 @@
       "title": "Inscription"
     },
     "twoFactor": {
-      "button": "Vérifier",
-      "description": "Entrez le code de votre application d'authentification pour continuer",
+      "button": "Valider le code",
+      "code": "code",
+      "description": "Nous avons envoyé un code de vérification à <strong></strong>. Veuillez l'entrer ci-dessous",
+      "errors": {
+        "code": {
+          "required": "Le code est requis"
+        },
+        "resendCode": "Une erreur est survenue lors du renvoi du code"
+      },
       "loading": "Vérification en cours...",
       "rememberDevice": "Se souvenir de cet appareil pendant 30 jours",
-      "title": "Vérification à deux facteurs",
+      "states": {
+        "error": "Une erreur est survenu lors de l'authentification à deux facteurs"
+      },
+      "success": {
+        "resendCode": "Le code a été renvoyé avec succès"
+      },
+      "title": "Vérification en deux étapes",
       "useRecoveryCode": "Utiliser un code de récupération à la place"
     },
     "verifyEmail": {
       "backToLogin": "Retour à la connexion",
       "button": "Vérifier l'e-mail",
+      "code": "code",
       "description": "Nous avons envoyé un code de vérification à votre adresse e-mail. Veuillez l'entrer ci-dessous.",
+      "errors": {
+        "resendLink": "Une erreur est survenu lors du renvoi du lien"
+      },
+      "pending": {
+        "description": "Nous avons envoyé un lien de vérification à  <strong></strong>. Cliquez sur le lien pour terminer le processus de vérification.",
+        "title": "Vérifiez votre adresse e-mail"
+      },
       "resendCode": "Vous n'avez pas reçu de code ? <button>Renvoyer le code</button>",
       "states": {
         "error": "Une erreur est survenu lors de la vérification l'adresse e-mail",
         "success": "L'adresse e-mail a été vérifié avec succès"
       },
-      "title": "Vérifiez votre e-mail"
+      "success": {
+        "description": "Félicitations ! Votre adresse e-mail a été vérifiée avec succès. Votre compte est maintenant activé.",
+        "resendLink": "Le lien a été renvoyé avec succès"
+      },
+      "title": "Vérification de l'adresse e-mail"
     }
   },
   "Header": {
@@ -279,5 +307,36 @@
     "light": "Clair",
     "srOnly": "Changer de thème",
     "system": "Système"
+  },
+  "UserButton": {
+    "items": {
+      "logIn": "Connexion",
+      "logOut": "Se déconnecter",
+      "preferences": {
+        "language": {
+          "en": {
+            "label": "Anglais"
+          },
+          "fr": {
+            "label": "Français"
+          },
+          "label": "Langue"
+        },
+        "theme": {
+          "darkMode": "Sombre",
+          "label": "Thème",
+          "lightMode": "Clair",
+          "systemMode": "Système"
+        },
+        "title": "Préférence"
+      },
+      "settings": "Paramètres"
+    }
+  },
+  "WelcomeCard": {
+    "title": "Bon retour !",
+    "guestTitle": "Bienvenue 👋",
+    "guestSubtitle": "Veuillez vous connecter pour accéder à votre tableau de bord.",
+    "signInButton": "Se connecter"
   }
 }

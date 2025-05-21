@@ -5,7 +5,7 @@ import { getVerificationTokenByToken } from "@/data/auth/verification-token";
 import { prisma } from "@/lib/prisma";
 import { getTranslations } from "next-intl/server";
 
-export const newVerification = async (token: string) => {
+export const verifyEmail = async (token: string) => {
   const t = await getTranslations("Form");
 
   try {
@@ -50,9 +50,9 @@ export const newVerification = async (token: string) => {
       },
     });
 
-    return { success: t("newVerification.states.success") };
+    return { success: t("verifyEmail.states.success") };
   } catch (error) {
-    console.error(t("newVerification.states.error"), error);
+    console.error(t("verifyEmail.states.error"), error);
     return {
       error: t("errors.generic"),
     };

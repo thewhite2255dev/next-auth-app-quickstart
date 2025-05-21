@@ -15,12 +15,12 @@ export default function FormSuccess({
   return (
     <div
       className={cn(
-        "flex min-h-9 items-center space-x-2 rounded-md bg-green-50 px-3 py-1 text-sm text-green-500",
+        "flex min-h-9 items-center space-x-2 rounded-md bg-emerald-50 px-3 py-1 text-sm text-emerald-500 [&_svg]:size-4 [&_svg]:shrink-0",
         className,
       )}
       {...props}
     >
-      <CircleCheck className="h-4 w-4" />
+      <CircleCheck />
       <span>{message}</span>
     </div>
   );

@@ -10,7 +10,7 @@ import { getTranslations } from "next-intl/server";
 
 export const resetPassword = async (
   values: ResetPasswordFormValues,
-  token?: string | null,
+  token: string | null,
 ) => {
   const t = await getTranslations("Form");
 

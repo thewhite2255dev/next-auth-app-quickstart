@@ -10,22 +10,13 @@ import {
 } from "@/data/auth/tokens";
 import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
 import { prisma } from "@/lib/prisma";
-import { getTwoFactorTokenByEmail } from "@/data/auth/two-factor-token";
 import { LoginFormValues } from "@/types/auth";
 import { LoginFormSchema } from "@/schemas/auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
-import { type ActionResult } from "@/types/action";
+import { getTwoFactorTokenByToken } from "@/data/auth/two-factor-token";
+import { revalidatePath } from "next/cache";
 
-type LoginResult = ActionResult & {
-  twoFactor?: boolean;
-};
-
-export const login = async (
-  values: LoginFormValues,
-  callbackUrl?: string,
-): Promise<LoginResult> => {
+export const login = async (values: LoginFormValues) => {
   const t = await getTranslations("Form");
 
   try {
@@ -53,7 +44,7 @@ export const login = async (
         verificationToken.token,
       );
 
-      return { success: true, message: t("login.states.success") };
+      return { verifyEmail: true };
     }
 
     const passwordsMatch = await bcrypt.compare(
@@ -67,9 +58,7 @@ export const login = async (
 
     if (existingUser.isTwoFactorEnabled && existingUser.email) {
       if (code) {
-        const twoFactorToken = await getTwoFactorTokenByEmail(
-          existingUser.email,
-        );
+        const twoFactorToken = await getTwoFactorTokenByToken(code);
 
         if (!twoFactorToken || twoFactorToken.token !== code) {
           return { error: t("errors.invalidCode") };
@@ -79,6 +68,12 @@ export const login = async (
 
         if (hasExpired) {
           return { error: t("errors.codeExpired") };
+        }
+
+        const existingUser = await getUserByEmail(twoFactorToken.email);
+
+        if (!existingUser || !existingUser.email || !existingUser.password) {
+          return { error: t("errors.email.notFound") };
         }
 
         await prisma.$transaction([
@@ -102,10 +97,11 @@ export const login = async (
     await signIn("credentials", {
       email,
       password,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirect: false,
     });
 
     revalidatePath("/");
+
     return { success: true };
   } catch (error) {
     console.error(t("login.states.error"), error);
@@ -117,6 +113,7 @@ export const login = async (
           return { error: t("errors.generic") };
       }
     }
-    return { error: t("errors.generic") };
+
+    throw error;
   }
 };

@@ -21,13 +21,19 @@ import { SignupFormSchema } from "@/schemas/auth";
 import FormError from "../form-error";
 import { useSession } from "next-auth/react";
 import { signup } from "@/actions/auth/signup";
+import { Link, useRouter } from "@/i18n/navigation";
+import { AuthCard } from "./auth-card";
+import { VerifyEmailCard } from "./verify-email-card";
+import { BackButton } from "./back-button";
 
-export default function SignupForm({}) {
+export function SignupForm() {
   const t = useTranslations("Form");
+  const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [step, setStep] = useState<"Credential" | "VerifyEmail">("Credential");
 
   const { update } = useSession();
 
@@ -47,89 +53,132 @@ export default function SignupForm({}) {
       const result = await signup(values);
       if (result?.success) {
         await update();
-        form.reset();
-      } else {
+        setStep("VerifyEmail");
+      }
+
+      if (result?.error) {
         setError(result?.error);
       }
     });
   }
 
   return (
-    <div className="space-y-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="flex flex-col gap-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>{t("signup.fields.name")}</FormLabel>
-                  <FormControl>
-                    <Input disabled={isPending} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>{t("signup.fields.email")}</FormLabel>
-                  <FormControl>
-                    <Input disabled={isPending} type="email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>{t("signup.fields.password")}</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        {...field}
-                        type={showPassword ? "text" : "password"}
-                        disabled={isPending}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                        tabIndex={-1}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <FormError message={error} />
-          <Button type="submit" className="w-full" disabled={isPending}>
-            {isPending ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              t("signup.button")
-            )}
-          </Button>
-        </form>
-      </Form>
+    <AuthCard
+      title={
+        step === "Credential"
+          ? t("signup.title")
+          : t("verifyEmail.pending.title")
+      }
+      description={step === "Credential" ? t("signup.description") : ""}
+      footer={
+        step === "Credential" ? (
+          <p className="text-muted-foreground text-sm">
+            {t.rich("signup.haveAccount", {
+              link: (chunks) => (
+                <Link
+                  href="/auth/login"
+                  className="text-primary underline-offset-4 hover:underline"
+                >
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </p>
+        ) : (
+          <BackButton href="/auth/login" label={t("auth.backToLogin")} />
+        )
+      }
+    >
+      {step === "VerifyEmail" && (
+        <VerifyEmailCard
+          email={form.getValues("email")}
+          description={
+            t.rich("verifyEmail.pending.description", {
+              strong: (chunks) => (
+                <span className="font-medium">{form.getValues("email")}</span>
+              ),
+            }) as string
+          }
+        />
+      )}
+      {step === "Credential" && (
+        <div className="space-y-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="flex flex-col gap-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>{t("signup.fields.name")}</FormLabel>
+                      <FormControl>
+                        <Input disabled={isPending} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>{t("signup.fields.email")}</FormLabel>
+                      <FormControl>
+                        <Input disabled={isPending} type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>{t("signup.fields.password")}</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <Input
+                            {...field}
+                            type={showPassword ? "text" : "password"}
+                            disabled={isPending}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                            tabIndex={-1}
+                          >
+                            {showPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
+                          </button>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormError message={error} />
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  t("signup.button")
+                )}
+              </Button>
+            </form>
+          </Form>
 
-      <SocialDivider text={t("auth.orSignInWith")} />
-      <SocialButtons providers={["google", "github"]} />
-    </div>
+          <SocialDivider text={t("auth.orSignInWith")} />
+          <SocialButtons providers={["google", "github"]} />
+        </div>
+      )}
+    </AuthCard>
   );
 }
