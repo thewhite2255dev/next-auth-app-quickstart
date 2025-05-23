@@ -48,31 +48,6 @@ export const SignupFormSchema = (t: (key: string, object?: any) => string) =>
       }),
   });
 
-export const OnboardingFormSchema = (
-  t: (key: string, object?: any) => string,
-) =>
-  z.object({
-    password: z
-      .string()
-      .min(1, {
-        message: t("onboarding.errors.password.required"),
-      })
-      .min(8, {
-        message: t("onboarding.errors.password.minLength", { min: 8 }),
-      }),
-    name: z
-      .string()
-      .min(1, {
-        message: t("onboarding.errors.name.required"),
-      })
-      .min(2, {
-        message: t("onboarding.errors.name.minLength", { min: 2 }),
-      })
-      .max(50, {
-        message: t("onboarding.errors.name.maxLength", { max: 50 }),
-      }),
-  });
-
 export const ResetPasswordFormSchema = (
   t: (key: string, object?: any) => string,
 ) =>

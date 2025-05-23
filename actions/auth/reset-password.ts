@@ -18,7 +18,7 @@ export const resetPassword = async (
     const validateFields = ResetPasswordFormSchema(t).safeParse(values);
 
     if (!validateFields.success) {
-      return { error: t("errors.invalidFields") };
+      return { error: t("errors.fields.invalid") };
     }
 
     if (!validateFields.success) {

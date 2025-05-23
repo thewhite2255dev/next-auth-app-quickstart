@@ -3,9 +3,10 @@
 import { getUserByEmail } from "@/data/auth/user";
 import { getVerificationTokenByToken } from "@/data/auth/verification-token";
 import { prisma } from "@/lib/prisma";
+import { ActionResult } from "@/types/action";
 import { getTranslations } from "next-intl/server";
 
-export const verifyEmail = async (token: string) => {
+export const verifyEmail = async (token: string): Promise<ActionResult> => {
   const t = await getTranslations("Form");
 
   try {
@@ -50,7 +51,7 @@ export const verifyEmail = async (token: string) => {
       },
     });
 
-    return { success: t("verifyEmail.states.success") };
+    return { success: true, message: t("verifyEmail.states.success") };
   } catch (error) {
     console.error(t("verifyEmail.states.error"), error);
     return {

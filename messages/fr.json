@@ -1,17 +1,78 @@
 {
   "Form": {
-    "VerifyEmail": {
-      "link": "lien"
+    "common": {
+      "link": "lien",
+      "code": "code"
     },
-    "account": {
-      "errors": {
-        "role": {
-          "invalid": "Rôle invalide"
+    "settings": {
+      "authentication": {
+        "errors": {
+          "twoFactor": {
+            "invalid": "Paramètre 2FA invalide"
+          }
+        }
+      },
+      "account": {
+        "errors": {
+          "role": {
+            "invalid": "Rôle invalide"
+          },
+          "username": {
+            "invalidPattern": "Caractères spéciaux non autorisés (seuls lettres, chiffres, - et _ sont acceptés)",
+            "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
+            "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
+          }
+        }
+      },
+      "deleteAccount": {
+        "errors": {
+          "confirmation": {
+            "invalid": "Vous devez écrire 'supprimer mon compte' pour confirmer",
+            "required": "Confirmation requise"
+          },
+          "deleteConfirmation": {
+            "span1": "Veuillez écrire",
+            "span2": "'supprimer mon compte'",
+            "span3": "pour confirmer"
+          },
+          "email": {
+            "invalid": "Veuillez entrer une adresse e-mail valide"
+          },
+          "password": {
+            "required": "Mot de passe requis"
+          }
+        }
+      },
+      "password": {
+        "errors": {
+          "current": {
+            "required": "Mot de passe actuel requis"
+          },
+          "mutual": {
+            "bothRequired": "Les deux champs de mot de passe doivent être remplis"
+          },
+          "new": {
+            "minLength": "Le nouveau mot de passe doit contenir au moins {min} caractères",
+            "required": "Nouveau mot de passe requis"
+          }
+        }
+      },
+      "profile": {
+        "errors": {
+          "bio": {
+            "maxLength": "La bio ne peut pas dépasser {max} caractères"
+          },
+          "location": {
+            "maxLength": "La localisation ne peut pas dépasser {max} caractères"
+          },
+          "name": {
+            "maxLength": "Le nom ne peut pas dépasser {max} caractères",
+            "minLength": "Le nom doit contenir au moins {min} caractères"
+          }
         },
-        "username": {
-          "invalidPattern": "Caractères spéciaux non autorisés (seuls lettres, chiffres, - et _ sont acceptés)",
-          "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
+        "states": {
+          "completed": "Merci d'avoir complété votre profil",
+          "error": "Une erreur est survenu lors de la configuration de votre profil"
         }
       }
     },
@@ -22,68 +83,26 @@
       "resendCountdown": "Renvoyer le {name} dans {countdown} s",
       "resendLabel": "Renvoyer le {name}"
     },
-    "authentication": {
-      "errors": {
-        "twoFactor": {
-          "invalid": "Paramètre 2FA invalide"
-        }
-      }
-    },
-    "contact": {
-      "errors": {
-        "email": {
-          "invalid": "Veuillez entrer une adresse e-mail valide"
-        },
-        "message": {
-          "minLength": "Le message doit contenir au moins {min} caractères"
-        },
-        "name": {
-          "minLength": "Le nom doit contenir au moins {min} caractères"
-        },
-        "subject": {
-          "minLength": "Le sujet doit contenir au moins {min} caractères"
-        }
-      }
-    },
-    "deleteAccount": {
-      "errors": {
-        "confirmation": {
-          "invalid": "Vous devez écrire 'supprimer mon compte' pour confirmer",
-          "required": "Confirmation requise"
-        },
-        "deleteConfirmation": {
-          "span1": "Veuillez écrire",
-          "span2": "'supprimer mon compte'",
-          "span3": "pour confirmer"
-        },
-        "email": {
-          "invalid": "Veuillez entrer une adresse e-mail valide"
-        },
-        "password": {
-          "required": "Mot de passe requis"
-        }
-      }
-    },
     "editAccount": "Ce n'est pas la bonne adresse ? <button>modifier</button>",
     "errors": {
-      "OAuthAccountNotLinked": "Ce compte existe déjà avec une autre méthode de connexion. Connectez-vous avec la méthode utilisée lors de l’inscription",
+      "OAuthAccountNotLinked": "Ce compte existe déjà avec une autre méthode de connexion. Connectez-vous avec la méthode utilisée lors de l'inscription",
       "codeExpired": "Le code a expiré",
       "email": {
         "notFound": "Aucun compte n'est associé à cette adresse e-mail",
-        "twoFactorNotEnabled": "L'authentification a deux facteur est désactive"
+        "twoFactorNotEnabled": "L'authentification a deux facteur est désactivé"
       },
       "emailFound": "L'adresse e-mail est déjà utilisé",
       "fields": {
-        "invalid": "Les champs saisis sont invalides"
+        "invalid": "Tous les champs sont requis"
       },
       "generic": "Une erreur est survenu, veuillez réessayer",
       "invalidCode": "Le code est invalide",
       "invalidCredentials": "Adresse e-mail ou mot de passe incorrect",
       "notAuthorized": "Accès non autorisé",
       "token": {
-        "expired": "Le token a expiré",
-        "invalid": "Le token est invalide",
-        "missing": "Le token est maquant"
+        "expired": "Le lien a expiré",
+        "invalid": "Le lien est invalide",
+        "missing": "Le lien est introuvable"
       },
       "usernameFound": "Le nom d'utilisateur est déjà utilisé"
     },
@@ -103,7 +122,6 @@
       "fields": {
         "email": "Adresse e-mail"
       },
-      "link": "lien",
       "states": {
         "error": "Une erreur est survenu lors de la réinitialisation du mot de passe",
         "resetEmailSent": "E-mail de réinitialisation envoyé avec succès"
@@ -138,38 +156,6 @@
         "success": "Un e-mail de confirmation a été envoyé"
       },
       "title": "Connexion"
-    },
-    "password": {
-      "errors": {
-        "current": {
-          "required": "Mot de passe actuel requis"
-        },
-        "mutual": {
-          "bothRequired": "Les deux champs de mot de passe doivent être remplis"
-        },
-        "new": {
-          "minLength": "Le nouveau mot de passe doit contenir au moins {min} caractères",
-          "required": "Nouveau mot de passe requis"
-        }
-      }
-    },
-    "profile": {
-      "errors": {
-        "bio": {
-          "maxLength": "La bio ne peut pas dépasser {max} caractères"
-        },
-        "location": {
-          "maxLength": "La localisation ne peut pas dépasser {max} caractères"
-        },
-        "name": {
-          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom doit contenir au moins {min} caractères"
-        }
-      },
-      "states": {
-        "completed": "Merci d'avoir complété votre profil",
-        "error": "Une erreur est survenu lors de la configuration de votre profil"
-      }
     },
     "resendCode": {
       "states": {
@@ -237,7 +223,6 @@
     },
     "twoFactor": {
       "button": "Valider le code",
-      "code": "code",
       "description": "Nous avons envoyé un code de vérification à <strong></strong>. Veuillez l'entrer ci-dessous",
       "errors": {
         "code": {
@@ -245,21 +230,17 @@
         },
         "resendCode": "Une erreur est survenue lors du renvoi du code"
       },
-      "loading": "Vérification en cours...",
-      "rememberDevice": "Se souvenir de cet appareil pendant 30 jours",
       "states": {
         "error": "Une erreur est survenu lors de l'authentification à deux facteurs"
       },
       "success": {
         "resendCode": "Le code a été renvoyé avec succès"
       },
-      "title": "Vérification en deux étapes",
-      "useRecoveryCode": "Utiliser un code de récupération à la place"
+      "title": "Vérification en deux étapes"
     },
     "verifyEmail": {
       "backToLogin": "Retour à la connexion",
       "button": "Vérifier l'e-mail",
-      "code": "code",
       "description": "Nous avons envoyé un code de vérification à votre adresse e-mail. Veuillez l'entrer ci-dessous.",
       "errors": {
         "resendLink": "Une erreur est survenu lors du renvoi du lien"
@@ -280,30 +261,14 @@
       "title": "Vérification de l'adresse e-mail"
     }
   },
-  "Header": {
-    "title": "Bienvenue"
-  },
-  "Home": {
-    "deployNow": "Déployer maintenant",
-    "footer": {
-      "examples": "Exemples",
-      "goToNext": "Aller sur nextjs.org →",
-      "learn": "Apprendre"
-    },
-    "getStarted": "Commencez par éditer",
-    "readDocs": "Lire nos docs",
-    "saveChanges": "Enregistrez et visualisez vos modifications instantanément"
-  },
+  "Header": {},
   "LanguageSwitcher": {
-    "currentLanguage": "Langue actuelle : {language}",
     "en": "Anglais",
     "fr": "Français",
-    "label": "Langue",
     "srOnly": "Changer de langue"
   },
   "ThemeSwitcher": {
     "dark": "Sombre",
-    "label": "Thème",
     "light": "Clair",
     "srOnly": "Changer de thème",
     "system": "Système"
@@ -312,24 +277,6 @@
     "items": {
       "logIn": "Connexion",
       "logOut": "Se déconnecter",
-      "preferences": {
-        "language": {
-          "en": {
-            "label": "Anglais"
-          },
-          "fr": {
-            "label": "Français"
-          },
-          "label": "Langue"
-        },
-        "theme": {
-          "darkMode": "Sombre",
-          "label": "Thème",
-          "lightMode": "Clair",
-          "systemMode": "Système"
-        },
-        "title": "Préférence"
-      },
       "settings": "Paramètres"
     }
   },

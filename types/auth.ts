@@ -1,7 +1,6 @@
 import * as z from "zod";
 import {
   ForgotPasswordFormSchema,
-  OnboardingFormSchema,
   LoginFormSchema,
   ResetPasswordFormSchema,
   SignupFormSchema,
@@ -15,7 +14,4 @@ export type ForgotPasswordFormValues = z.infer<
 >;
 export type ResetPasswordFormValues = z.infer<
   ReturnType<typeof ResetPasswordFormSchema>
->;
-export type OnboardingFormValues = z.infer<
-  ReturnType<typeof OnboardingFormSchema>
 >;

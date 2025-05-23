@@ -49,7 +49,7 @@ export function VerifyEmailCard({ email, description }: VerifyEmailCardProps) {
       <div className="py-2">
         <ResendButton
           variant="outline"
-          label={t("VerifyEmail.link")}
+          label={t("common.link")}
           handler={handleResendLink}
           initialCountdown={countdown}
           isLoading={isPending}

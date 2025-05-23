@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { currentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import cloudinary from "@/lib/cloudinary-config";
-import { getCloudinaryPublicId } from "@/lib/utils/utils";
+import { getCloudinaryPublicId } from "@/lib/utils/cloudinary";
 import { getTranslations } from "next-intl/server";
 import { CloudinaryResource } from "@/types/cloudinary";
 

@@ -22,10 +22,10 @@ const authMiddleware = auth((req) => {
 
   const isAuthPage = testPathnameRegex(authRoutes, nextUrl.pathname);
   const isProtectedRoute = testPathnameRegex(protectedRoutes, nextUrl.pathname);
-  const isOnboardingRoute = testPathnameRegex(
-    [DEFAULT_ONBOARDING_REDIRECT],
-    nextUrl.pathname,
-  );
+  // const isOnboardingRoute = testPathnameRegex(
+  //   [DEFAULT_ONBOARDING_REDIRECT],
+  //   nextUrl.pathname,
+  // );
 
   if (!session && isProtectedRoute) {
     const callbackUrl = `${nextUrl.pathname}${nextUrl.search || ""}`;

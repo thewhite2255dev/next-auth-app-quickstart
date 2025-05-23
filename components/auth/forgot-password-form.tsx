@@ -148,7 +148,7 @@ export function ForgotPasswordForm() {
           <div className="py-2">
             <ResendButton
               variant="outline"
-              label={t("forgotPassword.link")}
+              label={t("common.link")}
               handler={handleResendLink}
               initialCountdown={countdown}
               isLoading={isPending}

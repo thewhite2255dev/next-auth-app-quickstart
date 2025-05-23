@@ -303,7 +303,7 @@ export function LoginForm() {
           </Form>
           <ResendButton
             variant="outline"
-            label={t("twoFactor.code")}
+            label={t("common.code")}
             handler={handleResendCode}
             initialCountdown={countdown}
             isLoading={isPending}
