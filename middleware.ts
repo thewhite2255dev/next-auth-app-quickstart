@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
@@ -8,7 +7,6 @@ import { routing } from "./i18n/routing";
 import {
   authRoutes,
   DEFAULT_LOGIN_REDIRECT,
-  DEFAULT_ONBOARDING_REDIRECT,
   protectedRoutes,
   publicRoutes,
 } from "./routes";
@@ -17,15 +15,10 @@ const intlMiddleware = createIntlMiddleware(routing);
 
 const authMiddleware = auth((req) => {
   const { nextUrl } = req;
-  const user = req.auth?.user;
   const session = !!req.auth;
 
   const isAuthPage = testPathnameRegex(authRoutes, nextUrl.pathname);
   const isProtectedRoute = testPathnameRegex(protectedRoutes, nextUrl.pathname);
-  // const isOnboardingRoute = testPathnameRegex(
-  //   [DEFAULT_ONBOARDING_REDIRECT],
-  //   nextUrl.pathname,
-  // );
 
   if (!session && isProtectedRoute) {
     const callbackUrl = `${nextUrl.pathname}${nextUrl.search || ""}`;

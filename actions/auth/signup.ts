@@ -60,7 +60,7 @@ export const signup = async (values: SignupFormValues) => {
 
     revalidatePath("/");
 
-    return { success: true, message: t("signup.states.success") };
+    return { success: true };
   } catch (error) {
     console.error(t("signup.states.error"), error);
     return { error: t("errors.generic") };

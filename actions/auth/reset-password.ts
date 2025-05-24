@@ -75,7 +75,7 @@ export const resetPassword = async (
       },
     });
 
-    return { success: t("resetPassword.states.success") };
+    return { success: true, message: t("resetPassword.states.success") };
   } catch (error) {
     console.error(t("forgotPassword.states.error"), error);
     return {

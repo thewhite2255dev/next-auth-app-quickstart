@@ -3,7 +3,6 @@
 import { Link, usePathname } from "@/i18n/navigation";
 import { MobileNav } from "@/components/mobile-nav";
 import { cn } from "@/lib/utils/utils";
-import { useTranslations } from "next-intl";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { SiteConfig } from "@/lib/site-config";
@@ -15,7 +14,6 @@ export type navItemsType = {
 }[];
 
 export function Header() {
-  const t = useTranslations("Header");
   const pathname = usePathname();
 
   const navItems: navItemsType = [];

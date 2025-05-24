@@ -53,7 +53,7 @@ export const login = async (values: LoginFormValues) => {
     );
 
     if (!passwordsMatch) {
-      return { error: t("errors.invalidCredentials") };
+      return { error: t("login.errors.invalidCredentials") };
     }
 
     if (existingUser.isTwoFactorEnabled && existingUser.email) {
@@ -108,7 +108,7 @@ export const login = async (values: LoginFormValues) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: t("errors.invalidCredentials") };
+          return { error: t("login.errors.invalidCredentials") };
         default:
           return { error: t("errors.generic") };
       }

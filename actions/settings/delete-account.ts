@@ -8,44 +8,49 @@ import cloudinary from "@/lib/cloudinary-config";
 import bcrypt from "bcryptjs";
 import { DeleteAccountFormValues } from "@/types/settings";
 import { DeleteAccountSchema } from "@/schemas/settings";
-import { getCloudinaryPublicId } from "@/lib/utils/utils";
+import { getCloudinaryPublicId } from "@/lib/utils/cloudinary";
 import { getTranslations } from "next-intl/server";
+import { ActionResult } from "@/types/action";
 
-export const deleteAccount = async (values: DeleteAccountFormValues) => {
-  const t = await getTranslations();
+export const deleteAccount = async (
+  values: DeleteAccountFormValues,
+): Promise<ActionResult> => {
+  const t = await getTranslations("Form");
   const user = await currentUser();
 
-  if (!user) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const dbUser = await getUserById(user.id as string);
-
-  if (!dbUser) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const validateFields = DeleteAccountSchema(t).safeParse(values);
-
-  if (!validateFields.success) {
-    return { error: t("zod.common.messages.missingToken") };
-  }
-
-  const { email, password } = validateFields.data;
-
-  if (email && email !== dbUser.email) {
-    return { error: t("zod.common.messages.incorrectEmail") };
-  }
-
-  if (password && dbUser.password) {
-    const isPasswordMatch = await bcrypt.compare(password, dbUser.password);
-
-    if (!isPasswordMatch) {
-      return { error: t("zod.common.messages.incorrectPassword") };
-    }
-  }
-
   try {
+    if (!user) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const dbUser = await getUserById(user.id as string);
+
+    if (!dbUser) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const validateFields = DeleteAccountSchema(t).safeParse(values);
+
+    if (!validateFields.success) {
+      return {
+        message: t("errors.fields.invalid"),
+      };
+    }
+
+    const { email, password } = validateFields.data;
+
+    if (email && email !== dbUser.email) {
+      return { error: t("settings.deleteAccount.errors.email.incorrect") };
+    }
+
+    if (password && dbUser.password) {
+      const isPasswordMatch = await bcrypt.compare(password, dbUser.password);
+
+      if (!isPasswordMatch) {
+        return { error: t("settings.deleteAccount.errors.password.incorrect") };
+      }
+    }
+
     const publicId = getCloudinaryPublicId(dbUser.image || "");
 
     if (publicId) {
@@ -63,9 +68,14 @@ export const deleteAccount = async (values: DeleteAccountFormValues) => {
 
     revalidatePath("/");
 
-    return { success: t("zod.common.messages.accountDeleted") };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return {
+      success: true,
+      message: t("settings.deleteAccount.states.success"),
+    };
   } catch (error) {
-    return { error: t("common.messages.generic") };
+    console.error(t("settings.deleteAccount.states.error"), error);
+    return {
+      error: t("errors.generic"),
+    };
   }
 };

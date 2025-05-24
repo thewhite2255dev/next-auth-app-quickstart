@@ -10,38 +10,43 @@ import { getTranslations } from "next-intl/server";
 export const updateAuthentication = async (
   values: AuthenticationFormValues,
 ) => {
-  const t = await getTranslations();
+  const t = await getTranslations("Form");
   const user = await currentUser();
 
-  if (!user) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const dbUser = await getUserById(user.id as string);
-
-  if (!dbUser) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const updateData: Partial<Pick<typeof dbUser, "isTwoFactorEnabled">> = {};
-
-  if (values.isTwoFactorEnabled !== undefined) {
-    updateData.isTwoFactorEnabled = values.isTwoFactorEnabled;
-  }
-
   try {
+    if (!user) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const dbUser = await getUserById(user.id as string);
+
+    if (!dbUser) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const updateData: Partial<Pick<typeof dbUser, "isTwoFactorEnabled">> = {};
+
+    if (values.isTwoFactorEnabled !== undefined) {
+      updateData.isTwoFactorEnabled = values.isTwoFactorEnabled;
+    }
+
     await prisma.user.update({
       where: {
         id: dbUser.id,
       },
       data: updateData,
     });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+    revalidatePath("/");
+
+    return {
+      success: true,
+      message: t("settings.updateAuthentication.states.success"),
+    };
   } catch (error) {
-    return { error: t("common.messages.generic") };
+    console.error(t("settings.updateAuthentication.states.error"), error);
+    return {
+      error: t("errors.generic"),
+    };
   }
-
-  revalidatePath("/");
-
-  return { success: t("zod.common.messages.authenticationUpdated") };
 };

@@ -21,9 +21,12 @@ export const resendForgotPasswordLink = async (
     const passwordToken = await generatePasswordResetToken(email);
     await sendPasswordResetEmail(passwordToken.email, passwordToken.token);
 
-    return { success: true, message: t("forgotPassword.success.resendLink") };
+    return {
+      success: true,
+      message: t("forgotPassword.resend.states.success"),
+    };
   } catch (error) {
-    console.error(t("forgotPassword.errors.resendLink"), error);
+    console.error(t("forgotPassword.resend.states.error"), error);
     return {
       error: t("errors.generic"),
     };

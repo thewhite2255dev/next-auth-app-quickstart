@@ -6,6 +6,7 @@ import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export const socialItems = [
   {
@@ -39,7 +40,9 @@ export function SocialButtons({
   variant = "outline",
   showFullNames = false,
 }: SocialButtonsProps) {
+  const t = useTranslations("Form");
   const searchParams = useSearchParams();
+
   const callbackUrl = searchParams.get("callback_url") || undefined;
 
   const [socialLoading, setSocialLoading] = useState<SocialProvider | null>(
@@ -66,7 +69,7 @@ export function SocialButtons({
           variant={variant}
           text={
             showFullNames
-              ? `Continue with ${providerNames[provider]}`
+              ? `${t("auth.continueWith")} ${providerNames[provider]}`
               : providerNames[provider]
           }
           fullWidth={direction === "column"}
@@ -152,16 +155,12 @@ export function SocialButton({
       ) : (
         <span className="mr-2">{providerIcons[provider]}</span>
       )}
-      {text || `Continue with ${providerNames[provider]}`}
+      {text}
     </Button>
   );
 }
 
-export function SocialDivider({
-  text = "Or continue with",
-}: {
-  text?: string;
-}) {
+export function SocialDivider({ text }: { text?: string }) {
   return (
     <div className="relative my-4">
       <div className="absolute inset-0 flex items-center">

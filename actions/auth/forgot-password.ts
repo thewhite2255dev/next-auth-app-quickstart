@@ -36,7 +36,7 @@ export const forgotPassword = async (
 
     return {
       success: true,
-      message: t("forgotPassword.states.resetEmailSent"),
+      message: t("forgotPassword.states.success"),
     };
   } catch (error) {
     console.error(t("forgotPassword.states.error"), error);

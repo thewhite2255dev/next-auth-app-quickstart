@@ -271,7 +271,17 @@ export function LoginForm() {
                   <FormItem className="w-full">
                     <div className="flex items-center justify-center">
                       <FormControl>
-                        <InputOTP {...field} disabled={isPending} maxLength={6}>
+                        <InputOTP
+                          {...field}
+                          disabled={isPending}
+                          required
+                          inputMode="numeric"
+                          maxLength={6}
+                          onInput={(e) => {
+                            const input = e.currentTarget;
+                            input.value = input.value.replace(/\D/g, "");
+                          }}
+                        >
                           <InputOTPGroup>
                             <InputOTPSlot index={0} />
                             <InputOTPSlot index={1} />

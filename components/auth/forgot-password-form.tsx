@@ -78,9 +78,7 @@ export function ForgotPasswordForm() {
   return (
     <AuthCard
       title={t("forgotPassword.title")}
-      description={
-        !isSubmitted ? t("forgotPassword.description.enterEmail") : ""
-      }
+      description={!isSubmitted ? t("forgotPassword.description") : ""}
       footer={
         !isSubmitted ? (
           <BackButton href="/auth/login" label={t("auth.backToLogin")} />
@@ -137,7 +135,7 @@ export function ForgotPasswordForm() {
             </div>
           </div>
           <p className="text-muted-foreground">
-            {t.rich("forgotPassword.success.description", {
+            {t.rich("forgotPassword.successCard.description", {
               strong: (chunks) => (
                 <span className="font-medium">{form.getValues("email")}</span>
               ),

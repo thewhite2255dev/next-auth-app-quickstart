@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { verifyEmail } from "@/actions/auth/verify-email";
 import { Loader2, MailCheck, XCircle } from "lucide-react";
@@ -57,7 +57,7 @@ export function VerifyEmailForm() {
             </div>
           </div>
           <p className="text-muted-foreground">
-            {t("verifyEmail.success.description")}
+            {t("verifyEmail.successCard.description")}
           </p>
         </div>
       )}

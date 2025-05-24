@@ -1,81 +1,5 @@
 {
   "Form": {
-    "common": {
-      "link": "lien",
-      "code": "code"
-    },
-    "settings": {
-      "authentication": {
-        "errors": {
-          "twoFactor": {
-            "invalid": "Paramètre 2FA invalide"
-          }
-        }
-      },
-      "account": {
-        "errors": {
-          "role": {
-            "invalid": "Rôle invalide"
-          },
-          "username": {
-            "invalidPattern": "Caractères spéciaux non autorisés (seuls lettres, chiffres, - et _ sont acceptés)",
-            "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
-            "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
-          }
-        }
-      },
-      "deleteAccount": {
-        "errors": {
-          "confirmation": {
-            "invalid": "Vous devez écrire 'supprimer mon compte' pour confirmer",
-            "required": "Confirmation requise"
-          },
-          "deleteConfirmation": {
-            "span1": "Veuillez écrire",
-            "span2": "'supprimer mon compte'",
-            "span3": "pour confirmer"
-          },
-          "email": {
-            "invalid": "Veuillez entrer une adresse e-mail valide"
-          },
-          "password": {
-            "required": "Mot de passe requis"
-          }
-        }
-      },
-      "password": {
-        "errors": {
-          "current": {
-            "required": "Mot de passe actuel requis"
-          },
-          "mutual": {
-            "bothRequired": "Les deux champs de mot de passe doivent être remplis"
-          },
-          "new": {
-            "minLength": "Le nouveau mot de passe doit contenir au moins {min} caractères",
-            "required": "Nouveau mot de passe requis"
-          }
-        }
-      },
-      "profile": {
-        "errors": {
-          "bio": {
-            "maxLength": "La bio ne peut pas dépasser {max} caractères"
-          },
-          "location": {
-            "maxLength": "La localisation ne peut pas dépasser {max} caractères"
-          },
-          "name": {
-            "maxLength": "Le nom ne peut pas dépasser {max} caractères",
-            "minLength": "Le nom doit contenir au moins {min} caractères"
-          }
-        },
-        "states": {
-          "completed": "Merci d'avoir complété votre profil",
-          "error": "Une erreur est survenu lors de la configuration de votre profil"
-        }
-      }
-    },
     "auth": {
       "backToLogin": "Retour à la connexion",
       "continueWith": "Continuer avec",
@@ -83,67 +7,70 @@
       "resendCountdown": "Renvoyer le {name} dans {countdown} s",
       "resendLabel": "Renvoyer le {name}"
     },
+    "common": {
+      "code": "code",
+      "link": "lien"
+    },
     "editAccount": "Ce n'est pas la bonne adresse ? <button>modifier</button>",
     "errors": {
-      "OAuthAccountNotLinked": "Ce compte existe déjà avec une autre méthode de connexion. Connectez-vous avec la méthode utilisée lors de l'inscription",
-      "codeExpired": "Le code a expiré",
+      "OAuthAccountNotLinked": "Ce compte existe déjà avec une autre méthode de connexion. Connectez-vous avec la méthode utilisée lors de l'inscription.",
+      "codeExpired": "Le code a expiré.",
       "email": {
-        "notFound": "Aucun compte n'est associé à cette adresse e-mail",
-        "twoFactorNotEnabled": "L'authentification a deux facteur est désactivé"
+        "notFound": "Aucun compte n'est associé à cette adresse e-mail."
       },
-      "emailFound": "L'adresse e-mail est déjà utilisé",
+      "emailFound": "L'adresse e-mail est déjà utilisée.",
       "fields": {
-        "invalid": "Tous les champs sont requis"
+        "invalid": "Tous les champs sont requis."
       },
-      "generic": "Une erreur est survenu, veuillez réessayer",
-      "invalidCode": "Le code est invalide",
-      "invalidCredentials": "Adresse e-mail ou mot de passe incorrect",
-      "notAuthorized": "Accès non autorisé",
+      "generic": "Une erreur est survenue, veuillez réessayer.",
+      "invalidCode": "Le code est invalide.",
+      "notAuthorized": "Accès non autorisé.",
       "token": {
-        "expired": "Le lien a expiré",
-        "invalid": "Le lien est invalide",
-        "missing": "Le lien est introuvable"
+        "expired": "Le lien a expiré.",
+        "invalid": "Le lien est invalide.",
+        "missing": "Le lien est introuvable."
       },
-      "usernameFound": "Le nom d'utilisateur est déjà utilisé"
+      "usernameFound": "Le nom d'utilisateur est déjà utilisée."
     },
     "forgotPassword": {
-      "button": "Envoyer le lien de réinitialisation",
-      "description": {
-        "checkEmail": "Vérifier votre boîte de réception pour obtenir un lien permettant de réinitialiser votre mot de passe",
-        "enterEmail": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe"
-      },
+      "button": "Envoyer le lien de réinitialisation.",
+      "description": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
       "errors": {
         "email": {
-          "invalid": "Veuillez entrer une adresse e-mail valide",
-          "required": "L'adresse e-mail est requise"
-        },
-        "resendLink": "Une erreur est survenue lors du renvoi du lien"
+          "invalid": "Veuillez entrer une adresse e-mail valide.",
+          "required": "L'adresse e-mail est requise."
+        }
       },
       "fields": {
         "email": "Adresse e-mail"
       },
-      "states": {
-        "error": "Une erreur est survenu lors de la réinitialisation du mot de passe",
-        "resetEmailSent": "E-mail de réinitialisation envoyé avec succès"
+      "resend": {
+        "states": {
+          "error": "Une erreur est survenu lors du renvoi du lien.",
+          "success": "Le lien a été renvoyé avec succès."
+        }
       },
-      "success": {
-        "description": "Nous avons envoyé un lien de réinitialisation de mot de passe à <strong></strong>",
-        "resendLink": "Le lien a été renvoyé avec succès",
-        "title": "Vérifiez votre adresse e-mail"
+      "states": {
+        "error": "Une erreur est survenue lors de la réinitialisation du mot de passe.",
+        "success": "Un e-mail de réinitialisation a été envoyé avec succès."
+      },
+      "successCard": {
+        "description": "Nous avons envoyé un lien de réinitialisation de mot de passe à <strong></strong>"
       },
       "title": "Mot de passe oublié"
     },
     "login": {
       "button": "Se connecter",
       "createAccount": "Vous n'avez pas de compte ? <link>Inscrivez-vous</link>",
-      "description": "Connectez-vous à votre compte",
+      "description": "Connectez-vous à votre compte.",
       "errors": {
         "email": {
-          "invalid": "Veuillez entrer une adresse e-mail valide",
-          "required": "L'adresse e-mail est requise"
+          "invalid": "Veuillez entrer une adresse e-mail valide.",
+          "required": "L'adresse e-mail est requise."
         },
+        "invalidCredentials": "L'Adresse e-mail ou le mot de passe est incorrect.",
         "password": {
-          "required": "Le mot de passe est requis"
+          "required": "Le mot de passe est requis."
         }
       },
       "fields": {
@@ -152,116 +79,212 @@
       },
       "forgotPassword": "Mot de passe oublié ?",
       "states": {
-        "error": "Une erreur est survenu lors de la connexion",
-        "success": "Un e-mail de confirmation a été envoyé"
+        "error": "Une erreur est survenue lors de la connexion."
       },
       "title": "Connexion"
-    },
-    "resendCode": {
-      "states": {
-        "error": "Une erreur est survenu lors de l'envoie du 2FA Code",
-        "success": "2FA Code envoyé avec succès"
-      }
     },
     "resetPassword": {
       "button": "Réinitialiser le mot de passe",
       "description": {
-        "checkEmail": "Votre mot de passe a été réinitialisé avec succès",
-        "enterEmail": "Entrez votre nouveau mot de passe ci-dessous"
+        "enterEmail": "Entrez votre nouveau mot de passe ci-dessous."
       },
       "errors": {
         "password": {
-          "minLength": "Le mot de passe doit contenir au moins {min} caractères",
-          "required": "Le mot de passe est requis"
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères.",
+          "required": "Le mot de passe est requis."
         }
       },
       "states": {
-        "success": "Mot de passe réinitialisé avec succès"
+        "success": "Le mot de passe a été réinitialisé avec succès."
       },
-      "success": {
-        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe",
-        "goToLogin": "Aller à la connexion",
-        "title": "Mot de passe réinitialisé"
+      "successCard": {
+        "description": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec le nouveau mot de passe."
       },
       "title": "Réinitialiser le mot de passe"
     },
+    "settings": {
+      "account": {
+        "errors": {
+          "role": {
+            "invalid": "Rôle invalide"
+          },
+          "username": {
+            "invalidPattern": "Caractères spéciaux non autorisés (seuls lettres, chiffres, - et _ sont acceptés).",
+            "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères.",
+            "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères."
+          }
+        }
+      },
+      "authentication": {
+        "errors": {
+          "twoFactor": {
+            "invalid": "Paramètre 2FA invalide."
+          }
+        }
+      },
+      "deleteAccount": {
+        "errors": {
+          "confirmation": {
+            "invalid": "Vous devez écrire 'supprimer mon compte' pour confirmer.",
+            "required": "La confirmation est requise."
+          },
+          "deleteConfirmation": {
+            "span1": "Veuillez écrire",
+            "span2": "'supprimer mon compte",
+            "span3": "pour confirmer"
+          },
+          "email": {
+            "incorrect": "L'adresse e-mail est incorrecte.",
+            "invalid": "Veuillez entrer une adresse e-mail valide."
+          },
+          "password": {
+            "incorrect": "Le mot de passe est incorrect.",
+            "required": "Votre mot de passe est requis."
+          }
+        },
+        "states": {
+          "error": "Une erreur est survenue lors de la suppression du compte.",
+          "success": "Votre compte a été supprimé avec succès."
+        }
+      },
+      "deleteAvatar": {
+        "states": {
+          "error": "Une erreur est survenue lors de la suppression de l'avatar.",
+          "success": "Votre avatar a été supprimé avec succès."
+        }
+      },
+      "password": {
+        "errors": {
+          "current": {
+            "required": "Votre mot de passe actuel est requis."
+          },
+          "mutual": {
+            "bothRequired": "Les deux champs de mot de passe doivent être remplis."
+          },
+          "new": {
+            "minLength": "Le nouveau mot de passe doit contenir au moins {min} caractères.",
+            "required": "Le nouveau mot de passe est requis."
+          }
+        }
+      },
+      "profile": {
+        "errors": {
+          "bio": {
+            "maxLength": "La bio ne peut pas dépasser {max} caractères."
+          },
+          "location": {
+            "maxLength": "La localisation ne peut pas dépasser {max} caractères."
+          },
+          "name": {
+            "maxLength": "Le nom ne peut pas dépasser {max} caractères.",
+            "minLength": "Le nom doit contenir au moins {min} caractères."
+          }
+        },
+        "states": {
+          "error": "Une erreur est survenue lors de la configuration du profil."
+        }
+      },
+      "updateAccount": {
+        "states": {
+          "error": "Une erreur est survenue lors de la mise à jour du compte.",
+          "success": "Votre compte a été mis à jour avec succès."
+        }
+      },
+      "updateAuthentication": {
+        "states": {
+          "error": "Une erreur est survenue lors de la mise à jour de l'authentification.",
+          "success": "Votre authentification a été mise à jour avec succès."
+        }
+      },
+      "updateAvatar": {
+        "states": {
+          "error": "Une erreur est survenue lors de la mise à jour de votre avatar.",
+          "success": "Votre avatar a été mis à jour avec succès."
+        }
+      },
+      "updatePassword": {
+        "errors": {
+          "password": {
+            "incorrect": "Le mot de passe est incorrect."
+          }
+        },
+        "states": {
+          "error": "Une erreur est survenue lors de la mise à jour du mot de passe.",
+          "success": "Votre mot de passe a été mis à jour avec succès."
+        }
+      },
+      "updateProfile": {
+        "states": {
+          "error": "Une erreur est survenue lors de la mise à jour du profil.",
+          "success": "Votre profil a été mis à jour avec succès."
+        }
+      }
+    },
     "signup": {
       "button": "Créer un compte",
-      "description": "Créez votre compte dès maintenant",
+      "description": "Créez votre compte dès maintenant.",
       "errors": {
         "email": {
-          "invalid": "Veuillez entrer une adresse e-mail valide",
-          "required": "L'adresse e-mail est requise"
+          "invalid": "Veuillez entrer une adresse e-mail valide.",
+          "required": "L'adresse e-mail est requise."
         },
         "name": {
-          "maxLength": "Le nom ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom doit contenir au moins {min} caractères",
-          "required": "Le nom est requis"
+          "maxLength": "Le nom ne peut pas dépasser {max} caractères.",
+          "minLength": "Le nom doit contenir au moins {min} caractères.",
+          "required": "Le nom est requis."
         },
         "password": {
-          "minLength": "Le mot de passe doit contenir au moins {min} caractères",
-          "required": "Le mot de passe est requis"
-        },
-        "username": {
-          "invalidPattern": "Doit contenir uniquement des lettres, chiffres, - ou _",
-          "maxLength": "Le nom d'utilisateur ne peut pas dépasser {max} caractères",
-          "minLength": "Le nom d'utilisateur doit contenir au moins {min} caractères"
+          "minLength": "Le mot de passe doit contenir au moins {min} caractères.",
+          "required": "Le mot de passe est requis."
         }
       },
       "fields": {
         "email": "Adresse e-mail",
         "name": "Nom",
-        "password": "Mot de passe",
-        "username": "Nom d'utilisateur"
+        "password": "Mot de passe"
       },
       "haveAccount": "Vous avez déjà un compte ? <link>Connectez-vous</link>",
       "states": {
-        "error": "Une erreur est survenu lors de l'inscription",
-        "success": "Votre compte a été crée avec succès"
+        "error": "Une erreur est survenue lors de l'inscription."
       },
       "title": "Inscription"
     },
     "twoFactor": {
       "button": "Valider le code",
-      "description": "Nous avons envoyé un code de vérification à <strong></strong>. Veuillez l'entrer ci-dessous",
-      "errors": {
-        "code": {
-          "required": "Le code est requis"
-        },
-        "resendCode": "Une erreur est survenue lors du renvoi du code"
-      },
-      "states": {
-        "error": "Une erreur est survenu lors de l'authentification à deux facteurs"
-      },
-      "success": {
-        "resendCode": "Le code a été renvoyé avec succès"
+      "description": "Nous avons envoyé un code de vérification à <strong></strong>. Veuillez l'entrer ci-dessous.",
+      "resend": {
+        "states": {
+          "error": "Une erreur est survenu lors du renvoi du code.",
+          "success": "Le code a été renvoyé avec succès."
+        }
       },
       "title": "Vérification en deux étapes"
     },
     "verifyEmail": {
-      "backToLogin": "Retour à la connexion",
-      "button": "Vérifier l'e-mail",
-      "description": "Nous avons envoyé un code de vérification à votre adresse e-mail. Veuillez l'entrer ci-dessous.",
-      "errors": {
-        "resendLink": "Une erreur est survenu lors du renvoi du lien"
-      },
       "pending": {
         "description": "Nous avons envoyé un lien de vérification à  <strong></strong>. Cliquez sur le lien pour terminer le processus de vérification.",
         "title": "Vérifiez votre adresse e-mail"
       },
-      "resendCode": "Vous n'avez pas reçu de code ? <button>Renvoyer le code</button>",
-      "states": {
-        "error": "Une erreur est survenu lors de la vérification l'adresse e-mail",
-        "success": "L'adresse e-mail a été vérifié avec succès"
+      "resend": {
+        "states": {
+          "error": "Une erreur est survenu lors du renvoi du lien.",
+          "success": "Le lien a été renvoyé avec succès."
+        }
       },
-      "success": {
-        "description": "Félicitations ! Votre adresse e-mail a été vérifiée avec succès. Votre compte est maintenant activé.",
-        "resendLink": "Le lien a été renvoyé avec succès"
+      "states": {
+        "error": "Une erreur est survenue lors de la vérification de l'adresse e-mail.",
+        "success": "Un e-mail de vérification a été envoyé avec succès."
+      },
+      "successCard": {
+        "description": "Félicitations ! Votre adresse e-mail a été vérifiée avec succès. Votre compte est maintenant activé."
       },
       "title": "Vérification de l'adresse e-mail"
     }
   },
-  "Header": {},
+  "Home": {
+    "deployNow": "Déployer maintenant",
+    "readDocs": "Lire nos docs"
+  },
   "LanguageSwitcher": {
     "en": "Anglais",
     "fr": "Français",
@@ -281,9 +304,9 @@
     }
   },
   "WelcomeCard": {
-    "title": "Bon retour !",
-    "guestTitle": "Bienvenue 👋",
     "guestSubtitle": "Veuillez vous connecter pour accéder à votre tableau de bord.",
-    "signInButton": "Se connecter"
+    "guestTitle": "Bienvenue 👋",
+    "signInButton": "Se connecter",
+    "title": "Bon retour !"
   }
 }

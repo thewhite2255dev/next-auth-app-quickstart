@@ -10,20 +10,20 @@ import { getTranslations } from "next-intl/server";
 import { CloudinaryResource } from "@/types/cloudinary";
 
 export const updateAvatar = async (resource: CloudinaryResource) => {
-  const t = await getTranslations();
+  const t = await getTranslations("Form");
   const user = await currentUser();
 
-  if (!user) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const dbUser = await getUserById(user.id as string);
-
-  if (!dbUser) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
   try {
+    if (!user) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const dbUser = await getUserById(user.id as string);
+
+    if (!dbUser) {
+      return { error: t("errors.notAuthorized") };
+    }
+
     const publicId = getCloudinaryPublicId(dbUser.image || "");
 
     if (publicId) {
@@ -44,9 +44,14 @@ export const updateAvatar = async (resource: CloudinaryResource) => {
 
     revalidatePath("/");
 
-    return { success: t("zod.common.messages.avatarUpdated") };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return {
+      success: true,
+      message: t("settings.updateAvatar.states.success"),
+    };
   } catch (error) {
-    return { error: t("common.messages.generic") };
+    console.error(t("settings.updateAvatar.states.error"), error);
+    return {
+      error: t("errors.generic"),
+    };
   }
 };

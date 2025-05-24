@@ -118,7 +118,7 @@ export function ResetPasswordForm() {
             </div>
           </div>
           <p className="text-muted-foreground">
-            {t("resetPassword.success.description")}
+            {t("resetPassword.successCard.description")}
           </p>
         </div>
       )}

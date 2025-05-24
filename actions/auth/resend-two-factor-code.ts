@@ -23,9 +23,9 @@ export const resendTwoFactorCode = async (
       await sendTwoFactorTokenEmail(existingUser.email, twoFactorToken.token);
     }
 
-    return { success: true, message: t("twoFactor.success.resendCode") };
+    return { success: true, message: t("twoFactor.resend.states.success") };
   } catch (error) {
-    console.error(t("twoFactor.errors.resendCode"), error);
+    console.error(t("twoFactor.resend.states.error"), error);
     return {
       error: t("errors.generic"),
     };

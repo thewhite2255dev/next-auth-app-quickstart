@@ -25,9 +25,9 @@ export const resendVerifyEmailLink = async (
       verificationToken.token,
     );
 
-    return { success: true, message: t("verifyEmail.success.resendLink") };
+    return { success: true, message: t("verifyEmail.resend.states.success") };
   } catch (error) {
-    console.error(t("verifyEmail.errors.resendLink"), error);
+    console.error(t("verifyEmail.resend.states.error"), error);
     return {
       error: t("errors.generic"),
     };

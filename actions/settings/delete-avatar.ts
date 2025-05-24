@@ -5,25 +5,24 @@ import { getUserById } from "@/data/auth/user";
 import { currentUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import cloudinary from "@/lib/cloudinary-config";
-import { getCloudinaryPublicId } from "@/lib/utils/utils";
+import { getCloudinaryPublicId } from "@/lib/utils/cloudinary";
 import { getTranslations } from "next-intl/server";
 
 export const deleteAvatar = async () => {
-  const t = await getTranslations();
-
+  const t = await getTranslations("Form");
   const user = await currentUser();
 
-  if (!user) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
-  const dbUser = await getUserById(user.id as string);
-
-  if (!dbUser) {
-    return { error: t("common.messages.notAuthorized") };
-  }
-
   try {
+    if (!user) {
+      return { error: t("errors.notAuthorized") };
+    }
+
+    const dbUser = await getUserById(user.id as string);
+
+    if (!dbUser) {
+      return { error: t("errors.notAuthorized") };
+    }
+
     const publicId = getCloudinaryPublicId(dbUser.image || "");
 
     if (publicId) {
@@ -40,9 +39,14 @@ export const deleteAvatar = async () => {
 
     revalidatePath("/");
 
-    return { success: t("zod.common.messages.avatarDeleted") };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return {
+      success: true,
+      message: t("settings.deleteAvatar.states.success"),
+    };
   } catch (error) {
-    return { error: t("common.messages.generic") };
+    console.error(t("settings.deleteAvatar.states.error"), error);
+    return {
+      error: t("errors.generic"),
+    };
   }
 };
