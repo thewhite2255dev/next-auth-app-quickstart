@@ -52,7 +52,7 @@ export default function PasswordResetEmail({
             <Section className="my-6 text-center">
               <Link
                 href={resetLink}
-                className="inline-block rounded bg-blue-600 px-6 py-3 text-white no-underline hover:bg-blue-700"
+                className="inline-block rounded bg-blue-600 px-6 py-3 text-white no-underline"
               >
                 Réinitialiser le mot de passe
               </Link>
