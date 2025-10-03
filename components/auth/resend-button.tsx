@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils/utils";
+import { AUTH_CONSTANTS } from "@/lib/auth-constants";
+("@/lib/auth-constants");
 
 interface ResendButtonProps extends React.ComponentProps<"button"> {
   handler: () => void;
@@ -25,7 +27,7 @@ export function ResendButton({
   isLoading,
   handler,
   label,
-  initialCountdown = 20,
+  initialCountdown = AUTH_CONSTANTS.TWO_FA_RESEND_DELAY,
   variant = "default",
   ...props
 }: ResendButtonProps) {

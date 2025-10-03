@@ -63,6 +63,8 @@ model User {
   role                  UserRole               @default(USER)
   image                 String?
   isTwoFactorEnabled    Boolean                @default(false)
+  isTotpEnabled         Boolean                @default(false)
+  totpSecret            String?
   twoFactorConfirmation TwoFactorConfirmation?
 
   accounts      Account[]

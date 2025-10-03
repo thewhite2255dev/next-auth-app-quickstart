@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { Globe } from "lucide-react";
+import { useState } from "react";
+import { Check, Globe } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
@@ -10,6 +10,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils/utils";
@@ -23,6 +25,8 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("LanguageSwitcher");
+
+  const [position, setPosition] = useState("bottom");
 
   const languages = [
     { code: "fr", name: t("fr") },
@@ -46,8 +50,13 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
           <DropdownMenuItem
             key={language.code}
             onClick={() => onLanguageChange(language.code)}
-            className={cn(locale === language.code && "bg-accent")}
           >
+            <Check
+              className={cn({
+                "pointer-events-none opacity-0": locale !== language.code,
+                "pointer-events-auto opacity-100": locale === language.code,
+              })}
+            />
             <span className="mr-auto">{language.name}</span>
           </DropdownMenuItem>
         ))}

@@ -25,6 +25,7 @@ import { BackButton } from "./back-button";
 import { ResendButton } from "./resend-button";
 import FormSuccess from "../form-success";
 import { resendForgotPasswordLink } from "@/actions/auth/resend-forgot-password-link";
+import { AUTH_CONSTANTS } from "@/lib/auth-constants";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("Form");
@@ -60,7 +61,7 @@ export function ForgotPasswordForm() {
   const handleResendLink = () => {
     setError("");
     setSuccess("");
-    setCountdown(20);
+    setCountdown(AUTH_CONSTANTS.TWO_FA_RESEND_DELAY);
 
     startTransition(async () => {
       const result = await resendForgotPasswordLink(form.getValues("email"));
@@ -88,7 +89,7 @@ export function ForgotPasswordForm() {
               button: (chunks) => (
                 <button
                   onClick={() => {
-                    setCountdown(20);
+                    setCountdown(AUTH_CONSTANTS.TWO_FA_RESEND_DELAY);
                     setIsSubmitted(false);
                   }}
                   className="text-primary underline-offset-4 hover:underline"

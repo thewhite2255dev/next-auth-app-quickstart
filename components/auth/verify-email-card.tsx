@@ -7,6 +7,7 @@ import { useState, useTransition } from "react";
 import { resendVerifyEmailLink } from "@/actions/auth/resend-verify-email-link";
 import FormSuccess from "../form-success";
 import FormError from "../form-error";
+import { AUTH_CONSTANTS } from "@/lib/auth-constants";
 
 interface VerifyEmailCardProps {
   description: string;
@@ -16,7 +17,9 @@ interface VerifyEmailCardProps {
 export function VerifyEmailCard({ email, description }: VerifyEmailCardProps) {
   const t = useTranslations("Form");
 
-  const [countdown, setCountdown] = useState(20);
+  const [countdown, setCountdown] = useState(
+    AUTH_CONSTANTS.VERIFY_EMAIL_RESEND_DELAY,
+  );
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -24,7 +27,7 @@ export function VerifyEmailCard({ email, description }: VerifyEmailCardProps) {
   const handleResendLink = () => {
     setError("");
     setSuccess("");
-    setCountdown(20);
+    setCountdown(AUTH_CONSTANTS.VERIFY_EMAIL_RESEND_DELAY);
     startTransition(async () => {
       const result = await resendVerifyEmailLink(email);
       if (result?.error) {

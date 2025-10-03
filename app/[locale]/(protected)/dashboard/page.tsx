@@ -1,3 +1,4 @@
+import TOTPSetup from "@/components/totp/totp-setup";
 import { WelcomeCard } from "@/components/welcome-card";
 
 export default function DashboardPage() {
@@ -5,6 +6,8 @@ export default function DashboardPage() {
     <section className="container py-12 sm:py-20">
       <div className="flex items-center justify-center">
         <WelcomeCard />
+
+        <TOTPSetup />
       </div>
     </section>
   );

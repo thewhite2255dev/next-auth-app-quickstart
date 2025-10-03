@@ -15,6 +15,8 @@ import { LoginFormSchema } from "@/schemas/auth";
 import { getTranslations } from "next-intl/server";
 import { getTwoFactorTokenByToken } from "@/data/auth/two-factor-token";
 import { revalidatePath } from "next/cache";
+import { verifyTOTP } from "../totp/verify";
+import { error } from "console";
 
 export const login = async (values: LoginFormValues) => {
   const t = await getTranslations("Form");
@@ -56,42 +58,61 @@ export const login = async (values: LoginFormValues) => {
       return { error: t("login.errors.invalidCredentials") };
     }
 
-    if (existingUser.isTwoFactorEnabled && existingUser.email) {
-      if (code) {
-        const twoFactorToken = await getTwoFactorTokenByToken(code);
+    if (existingUser.isTotpEnabled) {
+      if (!existingUser.totpSecret) {
+        return { error: "TOTP non configuré." };
+      }
 
-        if (!twoFactorToken || twoFactorToken.token !== code) {
-          return { error: t("errors.invalidCode") };
-        }
+      if (!code) return { totp: true };
 
-        const hasExpired = new Date(twoFactorToken.expires) < new Date();
+      const isValidTotp = await verifyTOTP(code, existingUser.totpSecret);
 
-        if (hasExpired) {
-          return { error: t("errors.codeExpired") };
-        }
+      if (!isValidTotp) {
+        return { error: t("errors.invalidCode") };
+      }
 
-        const existingUser = await getUserByEmail(twoFactorToken.email);
-
-        if (!existingUser || !existingUser.email || !existingUser.password) {
-          return { error: t("errors.email.notFound") };
-        }
-
-        await prisma.$transaction([
-          prisma.twoFactorToken.delete({
-            where: { id: twoFactorToken.id },
-          }),
-          prisma.twoFactorConfirmation.deleteMany({
-            where: { userId: existingUser.id },
-          }),
-          prisma.twoFactorConfirmation.create({
-            data: { userId: existingUser.id },
-          }),
-        ]);
-      } else {
+      await prisma.$transaction([
+        prisma.twoFactorConfirmation.deleteMany({
+          where: { userId: existingUser.id },
+        }),
+        prisma.twoFactorConfirmation.create({
+          data: { userId: existingUser.id },
+        }),
+      ]);
+    } else if (existingUser.isTwoFactorEnabled) {
+      if (!code) {
         const twoFactorToken = await generateTwoFactorToken(existingUser.email);
         await sendTwoFactorTokenEmail(existingUser.email, twoFactorToken.token);
         return { twoFactor: true };
       }
+
+      const twoFactorToken = await getTwoFactorTokenByToken(code);
+
+      if (!twoFactorToken || twoFactorToken.token !== code) {
+        return { error: t("errors.invalidCode") };
+      }
+
+      const hasExpired = new Date(twoFactorToken.expires) < new Date();
+
+      if (hasExpired) {
+        return { error: t("errors.codeExpired") };
+      }
+
+      if (!existingUser || !existingUser.email || !existingUser.password) {
+        return { error: t("errors.email.notFound") };
+      }
+
+      await prisma.$transaction([
+        prisma.twoFactorToken.delete({
+          where: { id: twoFactorToken.id },
+        }),
+        prisma.twoFactorConfirmation.deleteMany({
+          where: { userId: existingUser.id },
+        }),
+        prisma.twoFactorConfirmation.create({
+          data: { userId: existingUser.id },
+        }),
+      ]);
     }
 
     await signIn("credentials", {

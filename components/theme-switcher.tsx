@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { Monitor, Moon, Sun } from "lucide-react";
+import { useState } from "react";
+import { Check, Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 
@@ -32,26 +32,35 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuItem
-          onClick={() => setTheme("system")}
-          className={cn(theme === "system" && "bg-accent")}
-        >
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           <Monitor className="h-4 w-4" />
           <span className="mr-auto">{t("system")}</span>
+          <Check
+            className={cn({
+              "pointer-events-none opacity-0": theme !== "system",
+              "pointer-events-auto opacity-100": theme === "system",
+            })}
+          />
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("light")}
-          className={cn(theme === "light" && "bg-accent")}
-        >
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           <Sun className="h-4 w-4" />
           <span className="mr-auto">{t("light")}</span>
+          <Check
+            className={cn({
+              "pointer-events-none opacity-0": theme !== "light",
+              "pointer-events-auto opacity-100": theme === "light",
+            })}
+          />
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("dark")}
-          className={cn(theme === "dark" && "bg-accent")}
-        >
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           <Moon className="h-4 w-4" />
           <span className="mr-auto">{t("dark")}</span>
+          <Check
+            className={cn({
+              "pointer-events-none opacity-0": theme !== "dark",
+              "pointer-events-auto opacity-100": theme === "dark",
+            })}
+          />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

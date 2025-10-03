@@ -36,6 +36,7 @@ import { resendTwoFactorCode } from "@/actions/auth/resend-two-factor-code";
 import FormSuccess from "../form-success";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { VerifyEmailCard } from "./verify-email-card";
+import { AUTH_CONSTANTS } from "@/lib/auth-constants";
 
 export function LoginForm() {
   const t = useTranslations("Form");
@@ -53,10 +54,12 @@ export function LoginForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [step, setStep] = useState<"Credential" | "TwoFactor" | "VerifyEmail">(
-    "Credential",
+  const [step, setStep] = useState<
+    "Credential" | "TwoFactor" | "Totp" | "VerifyEmail"
+  >("Credential");
+  const [countdown, setCountdown] = useState(
+    AUTH_CONSTANTS.TWO_FA_RESEND_DELAY,
   );
-  const [countdown, setCountdown] = useState(20);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(LoginFormSchema(t)),
@@ -87,6 +90,10 @@ export function LoginForm() {
         setStep("TwoFactor");
       }
 
+      if (result?.totp) {
+        setStep("Totp");
+      }
+
       if (result?.verifyEmail) {
         setStep("VerifyEmail");
       }
@@ -96,7 +103,7 @@ export function LoginForm() {
   const handleResendCode = () => {
     setError("");
     setSuccess("");
-    setCountdown(20);
+    setCountdown(AUTH_CONSTANTS.TWO_FA_RESEND_DELAY);
 
     startTransition(async () => {
       const result = await resendTwoFactorCode(form.getValues("email"));
@@ -121,15 +128,17 @@ export function LoginForm() {
             : t("verifyEmail.pending.title")
       }
       description={
-        step === "TwoFactor"
-          ? (t.rich("twoFactor.description", {
-              strong: (chunks) => (
-                <span className="font-medium">{form.getValues("email")}</span>
-              ),
-            }) as string)
-          : step === "Credential"
-            ? t("login.description")
-            : ""
+        step === "Totp"
+          ? "Ouvrez votre application d'authentification et saisissez le code généré ci-dessous."
+          : step === "TwoFactor"
+            ? (t.rich("twoFactor.description", {
+                strong: (chunks) => (
+                  <span className="font-medium">{form.getValues("email")}</span>
+                ),
+              }) as string)
+            : step === "Credential"
+              ? t("login.description")
+              : ""
       }
       footer={
         <>
@@ -160,7 +169,7 @@ export function LoginForm() {
           {step === "VerifyEmail" && (
             <BackButton
               onClick={() => {
-                setCountdown(20);
+                setCountdown(AUTH_CONSTANTS.TWO_FA_RESEND_DELAY);
                 setStep("Credential");
               }}
               type="button"
@@ -257,7 +266,7 @@ export function LoginForm() {
           <SocialButtons providers={["google", "github"]} />
         </div>
       )}
-      {step === "TwoFactor" && (
+      {(step === "TwoFactor" || step === "Totp") && (
         <div className="space-y-2">
           <Form {...form}>
             <form
