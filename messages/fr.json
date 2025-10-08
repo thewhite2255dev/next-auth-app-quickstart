@@ -30,6 +30,9 @@
         "invalid": "Le lien est invalide.",
         "missing": "Le lien est introuvable."
       },
+      "totp": {
+        "disabled": "TOTP non configuré."
+      },
       "usernameFound": "Le nom d'utilisateur est déjà utilisée."
     },
     "forgotPassword": {
@@ -309,6 +312,41 @@
     "light": "Clair",
     "srOnly": "Changer de thème",
     "system": "Système"
+  },
+  "TotpSetup": {
+    "description": "Ajoutez une clé TOTP à votre application d'authentification (Google Authenticator, Authy, ...).",
+    "footer": {
+      "service": "Service : {serviceName}",
+      "user": "Utilisateur : {username}"
+    },
+    "generateButton": {
+      "default": "Générer une clé secrète",
+      "loading": "Génération..."
+    },
+    "instructions": "Pour commencer, générez une clé secrète et scannez le QR code avec votre application d'authentification.",
+    "messages": {
+      "generateError": "Impossible de générer la clé ou le QR code.",
+      "generateSuccess": "Clé secrète générée. Scannez le QR code dans votre application d'authentification.",
+      "noSecret": "Aucune clé secrète. Générez-la d'abord.",
+      "verifyError": "Code invalide. Essayez de nouveau.",
+      "verifyFailed": "Impossible de vérifier le code.",
+      "verifySuccess": "Code valide — authentification configurée."
+    },
+    "qrCode": {
+      "empty": "Aucun QR code généré — générez une clé pour afficher le QR code."
+    },
+    "secretSection": {
+      "copiedMessage": "Clé copiée dans le presse-papier.",
+      "copyButton": "Copier",
+      "label": "Clé secrète (sauvegardez-la)",
+      "uriLabel": "URI TOTP"
+    },
+    "title": "Configurer l'authentification à deux facteurs",
+    "verification": {
+      "label": "Code à 6 chiffres",
+      "placeholder": "Entrez le code à 6 chiffres",
+      "verifyButton": "Vérifier"
+    }
   },
   "UserButton": {
     "items": {

@@ -16,7 +16,6 @@ import { getTranslations } from "next-intl/server";
 import { getTwoFactorTokenByToken } from "@/data/auth/two-factor-token";
 import { revalidatePath } from "next/cache";
 import { verifyTOTP } from "../totp/verify";
-import { error } from "console";
 
 export const login = async (values: LoginFormValues) => {
   const t = await getTranslations("Form");
@@ -60,7 +59,7 @@ export const login = async (values: LoginFormValues) => {
 
     if (existingUser.isTotpEnabled) {
       if (!existingUser.totpSecret) {
-        return { error: "TOTP non configuré." };
+        return { error: t("errors.totp.disabled") };
       }
 
       if (!code) return { totp: true };

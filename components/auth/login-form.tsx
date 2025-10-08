@@ -37,7 +37,6 @@ import FormSuccess from "../form-success";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { VerifyEmailCard } from "./verify-email-card";
 import { AUTH_CONSTANTS } from "@/lib/auth-constants";
-
 export function LoginForm() {
   const t = useTranslations("Form");
   const { update } = useSession();
@@ -51,6 +50,8 @@ export function LoginForm() {
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
+  const [isTwoFactorAuthPending, startTwoFactorAuthTransition] =
+    useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -118,10 +119,25 @@ export function LoginForm() {
     });
   };
 
+  const handleTwoFactorAuth = async () => {
+    setError("");
+    setSuccess("");
+    setCountdown(AUTH_CONSTANTS.TWO_FA_RESEND_DELAY);
+
+    startTransition(async () => {
+      const result = await resendTwoFactorCode(form.getValues("email"));
+      if (result?.error) {
+        setError(result.error);
+      } else if (result?.success) {
+        setStep("TwoFactor");
+      }
+    });
+  };
+
   return (
     <AuthCard
       title={
-        step === "TwoFactor"
+        step === "TwoFactor" || step === "Totp"
           ? t("twoFactor.title")
           : step === "Credential"
             ? t("login.title")
@@ -133,7 +149,7 @@ export function LoginForm() {
           : step === "TwoFactor"
             ? (t.rich("twoFactor.description", {
                 strong: (chunks) => (
-                  <span className="font-medium">{form.getValues("email")}</span>
+                  <span className="font-medium">{chunks}</span>
                 ),
               }) as string)
             : step === "Credential"
@@ -143,6 +159,16 @@ export function LoginForm() {
       footer={
         <>
           {step === "TwoFactor" && (
+            <BackButton
+              onClick={() => {
+                setError("");
+                setStep("Credential");
+                form.reset();
+              }}
+              label={t("auth.backToLogin")}
+            />
+          )}
+          {step === "Totp" && (
             <BackButton
               onClick={() => {
                 setError("");
@@ -185,9 +211,7 @@ export function LoginForm() {
           email={form.getValues("email")}
           description={
             t.rich("verifyEmail.pending.description", {
-              strong: (chunks) => (
-                <span className="font-medium">{form.getValues("email")}</span>
-              ),
+              strong: (chunks) => <span className="font-medium">{chunks}</span>,
             }) as string
           }
         />
@@ -266,7 +290,7 @@ export function LoginForm() {
           <SocialButtons providers={["google", "github"]} />
         </div>
       )}
-      {(step === "TwoFactor" || step === "Totp") && (
+      {step === "Totp" && (
         <div className="space-y-2">
           <Form {...form}>
             <form
@@ -298,6 +322,71 @@ export function LoginForm() {
                           </InputOTPGroup>
                           <InputOTPSeparator />
                           <InputOTPGroup>
+                            <InputOTPSlot index={3} />
+                            <InputOTPSlot index={4} />
+                            <InputOTPSlot index={5} />
+                          </InputOTPGroup>
+                        </InputOTP>
+                      </FormControl>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormError message={error} />
+              <FormSuccess message={success} />
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  t("twoFactor.button")
+                )}
+              </Button>
+            </form>
+          </Form>
+          <Button
+            onClick={handleTwoFactorAuth}
+            variant="outline"
+            className="w-full"
+            disabled={isTwoFactorAuthPending}
+          >
+            {isTwoFactorAuthPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Recevoir le code via email"
+            )}
+          </Button>
+        </div>
+      )}
+      {step === "TwoFactor" && (
+        <div className="space-y-2">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-4"
+            >
+              <FormField
+                control={form.control}
+                name="code"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <div className="flex items-center justify-center">
+                      <FormControl>
+                        <InputOTP
+                          {...field}
+                          disabled={isPending}
+                          required
+                          inputMode="numeric"
+                          maxLength={6}
+                          onInput={(e) => {
+                            const input = e.currentTarget;
+                            input.value = input.value.replace(/\D/g, "");
+                          }}
+                        >
+                          <InputOTPGroup>
+                            <InputOTPSlot index={0} />
+                            <InputOTPSlot index={1} />
+                            <InputOTPSlot index={2} />
                             <InputOTPSlot index={3} />
                             <InputOTPSlot index={4} />
                             <InputOTPSlot index={5} />

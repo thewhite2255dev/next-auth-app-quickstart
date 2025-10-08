@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
